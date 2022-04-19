@@ -87,6 +87,7 @@ int main()
 	glEnableVertexAttribArray(1);
 
 	Shader shader("res/shaders/vertex.txt", "res/shaders/fragment.txt");
+	Shader lightSource("res/shaders/lightVertex.txt", "res/shaders/lightFragment.txt");
 	
 	Texture texture1, texture2;
 	texture1.load("res/textures/container.jpg", GL_LINEAR);
@@ -121,6 +122,18 @@ int main()
 		shader.setMat4("model", model);
 		shader.setMat4("view", camera.view);
 		shader.setMat4("proj", proj);
+
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+
+		lightSource.use();
+		lightSource.setMat4("model", model);
+		lightSource.setMat4("view", camera.view);
+		lightSource.setMat4("proj", proj);
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);

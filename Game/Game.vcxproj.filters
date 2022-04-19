@@ -36,10 +36,15 @@
     <ClCompile Include="src\Rendering\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rendering\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\shaders\vertex.txt" />
     <Text Include="res\shaders\fragment.txt" />
+    <Text Include="res\shaders\lightVertex.txt" />
+    <Text Include="res\shaders\lightFragment.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Rendering\Shader.h">
@@ -61,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Rendering\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

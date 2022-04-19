@@ -95,6 +95,7 @@
     <ClCompile Include="src\glad.c" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Rendering\Camera.cpp" />
+    <ClCompile Include="src\Rendering\Model.cpp" />
     <ClCompile Include="src\Rendering\Shader.cpp" />
     <ClCompile Include="src\Rendering\Texture.cpp" />
     <ClCompile Include="src\Scene\Entity.cpp" />
@@ -102,10 +103,13 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="res\shaders\fragment.txt" />
+    <Text Include="res\shaders\lightFragment.txt" />
+    <Text Include="res\shaders\lightVertex.txt" />
     <Text Include="res\shaders\vertex.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Rendering\Camera.h" />
+    <ClInclude Include="src\Rendering\Model.h" />
     <ClInclude Include="src\Rendering\Shader.h" />
     <ClInclude Include="dep\inc\STBI\stb_image.h" />
     <ClInclude Include="src\Rendering\Texture.h" />
