@@ -1,13 +1,12 @@
-#include <iostream>
-
-//#include <glad/glad.h>
-//#include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Window.h"
 #include "Rendering/Shader.h"
 #include "Rendering/Texture.h"
 #include "Scene/Entity.h"
+#include "Rendering/Camera.h"
+
+Camera camera;
 
 int main()
 {
@@ -98,6 +97,8 @@ int main()
 
 	glEnable(GL_DEPTH_TEST);
 
+	camera.update(glm::vec3(0.0f, 0.0f, 3.0f));
+
 	while (!window.shouldClose())
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -111,9 +112,6 @@ int main()
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0));
 
-		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0, 0, -3.0f));
-
 		glm::mat4 proj = glm::mat4(1.0f);
 		proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
@@ -121,7 +119,7 @@ int main()
 		shader.setInt("texture1", 0);
 		shader.setInt("texture2", 1);
 		shader.setMat4("model", model);
-		shader.setMat4("view", view);
+		shader.setMat4("view", camera.view);
 		shader.setMat4("proj", proj);
 
 		glBindVertexArray(VAO);

@@ -1,6 +1,9 @@
 #include <iostream>
 
 #include "Window.h"
+#include "Rendering/Camera.h"
+
+extern Camera camera;
 
 Window::Window(int width, int height, std::string name)
 	: width(width), height(height), title(title)
@@ -69,5 +72,29 @@ void Window::framebufferSizeCallback(GLFWwindow* window, int width, int height)
 
 void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	std::cout << "key pressed!\n";
+	if (action == GLFW_PRESS)
+	{
+		const float cameraSpeed = 0.5f;
+
+		if (key == GLFW_KEY_W)
+		{
+			glm::vec3 newPos = camera.getPosition() + cameraSpeed * glm::normalize(glm::cross(camera.getUp(), camera.getRight()));
+			camera.update(newPos);
+		}
+		else if (key == GLFW_KEY_S)
+		{
+			glm::vec3 newPos = camera.getPosition() - cameraSpeed * glm::normalize(glm::cross(camera.getUp(), camera.getRight()));
+			camera.update(newPos);
+		}
+		else if (key == GLFW_KEY_A)
+		{
+			glm::vec3 newPos = camera.getPosition() - cameraSpeed * camera.getRight();
+			camera.update(newPos);
+		}
+		else if (key == GLFW_KEY_D)
+		{
+			glm::vec3 newPos = camera.getPosition() + cameraSpeed * camera.getRight();
+			camera.update(newPos);
+		}
+	}
 }
