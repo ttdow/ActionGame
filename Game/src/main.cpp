@@ -14,36 +14,36 @@ int main()
 
 	float vertices[] = 
 	{
-		// Vertex			  // Texture
-		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // 0
-		 0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // 1
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // 2
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // 3
-		
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // 4
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // 5
-		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // 6
-		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // 7
+		 // Vertex			  // Normal			   // Texture
+		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f, // 0
+		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f, // 1
+		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f, // 2
+		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f, // 3
 
-		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // 8
-		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // 9
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // 10
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // 11
+		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f, // 4
+		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 0.0f, // 5
+		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f, // 6
+		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 1.0f, // 7
 
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // 12
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // 13
-		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // 14
-		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // 15
+		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f, // 8
+		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f, // 9
+		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f, // 10
+		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f, // 11
 
-		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // 16
-		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // 17
-		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // 18
-		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // 19
+		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f, // 12
+		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f, // 13
+		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f, // 14
+		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, // 15
 
-		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // 20
-		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // 21
-		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // 22
-		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, // 23
+		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f, // 16
+		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f, // 17
+		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f, // 18
+		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f, // 19
+
+		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f, // 20
+		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f, // 21
+		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f, // 22
+		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f  // 23
 	};
 
 	unsigned int indices[] = 
@@ -81,10 +81,12 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
 
 	Shader shader("res/shaders/vertex.txt", "res/shaders/fragment.txt");
 	Shader lightSource("res/shaders/lightVertex.txt", "res/shaders/lightFragment.txt");
@@ -99,6 +101,9 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 
 	camera.update(glm::vec3(0.0f, 0.0f, 3.0f));
+
+	glm::vec3 lightPos = glm::vec3(3.0f, 0.0f, 0.0f);
+	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	while (!window.shouldClose())
 	{
@@ -122,18 +127,21 @@ int main()
 		shader.setMat4("model", model);
 		shader.setMat4("view", camera.view);
 		shader.setMat4("proj", proj);
+		shader.setVec3("lightPos", lightPos);
+		shader.setVec3("lightColor", lightColor);
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+		model = glm::translate(model, lightPos);
 
 		lightSource.use();
 		lightSource.setMat4("model", model);
 		lightSource.setMat4("view", camera.view);
 		lightSource.setMat4("proj", proj);
+		lightSource.setVec3("lightColor", lightColor);
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
