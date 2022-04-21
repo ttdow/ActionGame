@@ -12,6 +12,7 @@ Camera::Camera()
 	glm::vec3 worldUp = glm::vec3(0.0f, 1.0f, 0.0f);
 	this->cameraRight = glm::normalize(glm::cross(worldUp, this->cameraDirection));
 	this->cameraUp = glm::cross(cameraDirection, cameraRight);
+	this->cameraFront = glm::cross(this->cameraUp, this->cameraRight);
 
 	this->view = glm::mat4(1.0f);
 }
@@ -25,6 +26,7 @@ void Camera::update(glm::vec3 newPos)
 	this->cameraDirection = glm::normalize(cameraPos - cameraTarget);
 	this->cameraRight = glm::normalize(glm::cross(worldUp, this->cameraDirection));
 	this->cameraUp = glm::cross(cameraDirection, cameraRight);
+	this->cameraFront = glm::cross(this->cameraUp, this->cameraRight);
 
 	this->view = glm::lookAt(this->cameraPos, this->cameraTarget, this->cameraUp);
 }
