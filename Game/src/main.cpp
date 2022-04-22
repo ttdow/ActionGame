@@ -72,11 +72,9 @@ int main()
 	Shader shader("res/shaders/vertex.txt", "res/shaders/fragment.txt");
 	Shader lightSource("res/shaders/lightVertex.txt", "res/shaders/lightFragment.txt");
 	
-	Texture texture1, texture2, diffuseMap, specularMap;
-	texture1.load("res/textures/container.jpg", GL_LINEAR);
-	texture2.load("res/textures/awesomeface.png", GL_LINEAR);
-	diffuseMap.load("res/textures/container-diffuse.png", GL_LINEAR);
-	specularMap.load("res/textures/container-specular.png", GL_LINEAR);
+	Texture backpackDiffuse, backpackSpecular;
+	backpackDiffuse.load("res/models/diffuse.jpg", GL_LINEAR);
+	backpackSpecular.load("res/models/specular.jpg", GL_LINEAR);
 
 	glViewport(0, 0, 800, 600);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -89,7 +87,6 @@ int main()
 	glm::vec3 lightPos = glm::vec3(3.0f, 0.0f, 0.0f);
 
 	Mesh box(temp, temp2);
-
 	Model backpack("res/models/backpack.obj");
 
 	while (!window.shouldClose())
@@ -98,13 +95,9 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		glActiveTexture(GL_TEXTURE0);
-		texture1.bind();
+		backpackDiffuse.bind();
 		glActiveTexture(GL_TEXTURE1);
-		texture2.bind();
-		glActiveTexture(GL_TEXTURE2);
-		diffuseMap.bind();
-		glActiveTexture(GL_TEXTURE3);
-		specularMap.bind();
+		backpackSpecular.bind();
 
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0));
@@ -113,8 +106,8 @@ int main()
 		proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
 		shader.use();
-		shader.setInt("material.diffuse", 2);
-		shader.setInt("material.specular", 3);
+		shader.setInt("material.diffuse", 0);
+		shader.setInt("material.specular", 0);
 		shader.setFloat("material.shininess", 64.0f);
 
 		shader.setMat4("model", model);
@@ -125,14 +118,14 @@ int main()
 		shader.setFloat("pointLights[0].constant", 1.0f);
 		shader.setFloat("pointLights[0].linear", 0.09f);
 		shader.setFloat("pointLights[0].quadratic", 0.032f);
-		shader.setVec3("pointLights[0].ambient", 0.2f, 0.2f, 0.2f);
-		shader.setVec3("pointLights[0].diffuse", 0.5f, 0.5f, 0.5f);
+		shader.setVec3("pointLights[0].ambient", 0.05f, 0.05f, 0.05f);
+		shader.setVec3("pointLights[0].diffuse", 0.8f, 0.8f, 0.8f);
 		shader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
 
 		shader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-		shader.setVec3("dirLight.ambient", 0.2f, 0.2f, 0.2f);
-		shader.setVec3("dirLight.diffuse", 0.5f, 0.5f, 0.5f);
-		shader.setVec3("dirLight.specular", 1.0f, 1.0f, 1.0f);
+		shader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+		shader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+		shader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
 		glm::vec3 cameraPos = camera.getPosition();
 		glm::vec3 cameraFront = camera.getFront();
@@ -148,7 +141,8 @@ int main()
 		shader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
 		shader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
 
-		//box.draw(shader);
+		shader.setInt("checkSpec", 1);
+
 		backpack.draw(shader);
 
 		model = glm::mat4(1.0f);
