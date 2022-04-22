@@ -5,6 +5,7 @@
 #include "Rendering/Texture.h"
 #include "Scene/Entity.h"
 #include "Rendering/Camera.h"
+#include "Rendering/Model.h"
 #include "Rendering/Mesh.h"
 
 Camera camera;
@@ -89,6 +90,8 @@ int main()
 
 	Mesh box(temp, temp2);
 
+	Model backpack("res/models/backpack.obj");
+
 	while (!window.shouldClose())
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -145,7 +148,8 @@ int main()
 		shader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
 		shader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
 
-		box.draw(shader);
+		//box.draw(shader);
+		backpack.draw(shader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, lightPos);

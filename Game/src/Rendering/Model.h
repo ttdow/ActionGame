@@ -1,28 +1,30 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 #include <glm/glm.hpp>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 class Shader;
-
-struct Vertex
-{
-	glm::vec3 vertex;
-	glm::vec2 texCoord;
-};
+class Mesh;
 
 class Model
 {
 public:
 
-	void draw(Shader shader);
+	Model(std::string path);
+
+	void draw(Shader& shader);
 
 private:
 
-	void initialize();
+	std::vector<Mesh> meshes;
+	std::string directory;
 
-	std::vector<Vertex> vertices;
-	std::vector<unsigned int> indices;
-	unsigned int VAO, VBO, EBO;
+	void loadModel(std::string path);
+	void processNode(aiNode* node, const aiScene* scene);
+	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
 };
