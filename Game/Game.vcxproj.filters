@@ -77,5 +77,8 @@
     <ClInclude Include="src\Rendering\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rendering\Bone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

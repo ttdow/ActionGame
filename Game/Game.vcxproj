@@ -109,6 +109,7 @@
     <Text Include="res\shaders\vertex.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Rendering\Bone.h" />
     <ClInclude Include="src\Rendering\Camera.h" />
     <ClInclude Include="src\Rendering\Mesh.h" />
     <ClInclude Include="src\Rendering\Model.h" />

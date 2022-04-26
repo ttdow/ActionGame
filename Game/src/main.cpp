@@ -76,6 +76,10 @@ int main()
 	backpackDiffuse.load("res/models/diffuse.jpg", GL_LINEAR);
 	backpackSpecular.load("res/models/specular.jpg", GL_LINEAR);
 
+	Texture ybotTex1, ybotTex2;
+	ybotTex1.load("res/textures/ybot1_d.png", GL_LINEAR);
+	ybotTex2.load("res/textures/ybot2_d.png", GL_LINEAR);
+
 	glViewport(0, 0, 800, 600);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -88,19 +92,25 @@ int main()
 
 	Mesh box(temp, temp2);
 	Model backpack("res/models/backpack.obj");
+	Model ybot("res/models/ybot/ybot.fbx");
 
 	while (!window.shouldClose())
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		//glActiveTexture(GL_TEXTURE0);
+		//ybotTex_d.bind();
+		//glActiveTexture(GL_TEXTURE1);
+		//backpackSpecular.bind();
 		glActiveTexture(GL_TEXTURE0);
-		backpackDiffuse.bind();
+		ybotTex1.bind();
 		glActiveTexture(GL_TEXTURE1);
-		backpackSpecular.bind();
 
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0));
+		model = glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f));
+		//model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0));
+		model = glm::scale(model, glm::vec3(0.01f));
 
 		glm::mat4 proj = glm::mat4(1.0f);
 		proj = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
@@ -143,7 +153,11 @@ int main()
 
 		shader.setInt("checkSpec", 1);
 
-		backpack.draw(shader);
+		//backpack.draw(shader);
+		shader.setInt("material.diffuse", 0);
+		ybot.meshes[0].draw(shader);
+		shader.setInt("material.diffuse", 1);
+		ybot.meshes[1].draw(shader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, lightPos);
